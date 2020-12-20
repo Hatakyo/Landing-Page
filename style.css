@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap');
+ :root {
+    --bg-color: #F0F0F0;
+    --txt-color: #221E22;
+    --color: #FF66FF;
+    --white: #fff;
+    --black: #000;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    background-image: url("https://2sao.vietnamnetjsc.vn/images/2017/11/30/09/01/bai-bien-01.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+.nav {
+    z-index: 101;
+    color: var(--white);
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 80px;
+}
+
+.logo {
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    animation: top-down 1.5s forwards;
+    color: var(--color);
+}
+
+.cart {
+    font-size: 30px;
+    cursor: pointer;
+    animation: right-to-left 1.5s forwards;
+}
+
+.menu {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 101;
+    animation: left-to-right 1.5s forwards;
+}
+
+.bar {
+    position: relative;
+    cursor: pointer;
+}
+
+.bar,
+.bar::before,
+.bar::after {
+    width: 30px;
+    height: 3px;
+    border-radius: 0.5rem;
+    background-color: var(--white);
+    transition: 0.4s;
+}
+
+.bar::before,
+.bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+}
+
+.bar::before {
+    top: -10px;
+}
+
+.bar::after {
+    top: 10px;
+}
+
+.bar.actice {
+    background-color: transparent;
+}
+
+.sci {
+    z-index: 99;
+    color: var(--white);
+    display: flex;
+    position: fixed;
+    right: 0;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    animation: right-to-left 1.5s;
+}
+
+.sci i {
+    font-size: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.8s all ease-in-out;
+}
+
+.sci i:hover {
+    transform: rotate(30deg);
+    /* nghiêng */
+}
+
+.fashion {
+    z-index: 2;
+    color: var(--color);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    font-size: 20px;
+    font-weight: 400;
+    animation: left-to-right 1.5s;
+}
+
+.main-slide {
+    z-index: 99 !important;
+}
+
+.col-5 {
+    width: 42%;
+}
+
+.col-7 {
+    width: 58%;
+}
+
+.txt {
+    color: var(--color);
+}
+
+.info {
+    color: var(--white);
+    text-align: right;
+    position: relative;
+    display: flex;
+    overflow: visible;
+    width: 100%;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+.info h1 {
+    font-size: 150px;
+    font-weight: 900;
+    line-height: 140px;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.info p {
+    margin: 50px 0;
+    text-align: justify;
+}
+
+.info button {
+    font-size: 30px;
+    padding: 10px 50px;
+    border-radius: 30px;
+    outline: transparent;
+    border: 2px solid var(--white);
+    background-color: transparent;
+    color: var(--white);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.info button:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.product-info {
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    left: 0;
+    padding: 0 80px;
+    pointer-events: none;
+}
+
+.product-info.active {
+    pointer-events: visible;
+}
+
+.product-info h1,
+.product-info>span,
+.product-info p,
+.product-info button {
+    opacity: 0;
+    transition: unset;
+}
+
+.product-info button {
+    transition-delay: 0.4s;
+}
+
+.product-info.active h1,
+.product-info.active>span,
+.product-info.active p,
+.product-info.active button {
+    opacity: 1;
+    transition: opacity 1s, transform 1.2s, letter-spacing 1.2s, right 1.2s;
+}
+
+.product-info h1 {
+    letter-spacing: 20px;
+}
+
+.product-info.active h1 {
+    letter-spacing: unset;
+}
+
+.product-info>span {
+    position: absolute;
+    right: 200px;
+}
+
+.product-info.active>span {
+    right: 80px;
+}
+
+.product-info p,
+.product-info button {
+    transform: translateY(100px);
+}
+
+.product-info.active p,
+.product-info.active button {
+    transform: translateY(0);
+}
+
+[ class*="col-"] {
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+.slider-main {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 50%;
+    height: 80%;
+    overflow: visible;
+}
+
+.slider {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    animation: bottom-up 2s;
+    transition: 1s ease-in-out;
+}
+
+.slider:nth-child(1) {
+    z-index: 4;
+}
+
+.slider:nth-child(2) {
+    z-index: 2;
+    width: 85%;
+    height: 85%;
+    left: 60%;
+}
+
+.slider:nth-child(3) {
+    z-index: 1;
+    width: 65%;
+    height: 65%;
+    left: 115%;
+}
+
+.slider:nth-child(4) {
+    z-index: 0;
+    width: 65%;
+    height: 65%;
+    left: 115%;
+    transform: scale(0);
+}
+
+.img-holder {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.slide-control {
+    color: var(--white);
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid var(--white);
+    z-index: 99;
+}
+
+.slide-control:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.slide-control:hover i {
+    color: var(--black);
+}
+
+.nav-overlay {
+    top: 6%;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 101;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.nav-overlay a {
+    padding: 15px;
+    text-decoration: none;
+    font-size: 36px;
+    display: block;
+    color: violet;
+    transition: 0.4s;
+}
+
+.nav-overlay a:hover {
+    color: var(--white);
+}
+
+.nav-overlay.active {
+    width: 100%;
+}
+
+.nav-overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+/* keyframe */
+
+@keyframes top-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@keyframes bottom-up {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@keyframes left-to-right {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes right-to-left {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+
+/* resposive */
+
+@media only screen and (max-width: 1024px) {
+    .info {
+        align-items: flex-start;
+    }
+    .info h1 {
+        font-size: 100px;
+        text-align: left;
+    }
+    .info p {
+        font-size: 14px;
+    }
+    .info button {
+        font-size: 20px;
+        padding: 10px 20px;
+    }
+    .product-info {
+        padding: 0 50px;
+    }
+    .slider-main {
+        width: 95%;
+        height: 65%;
+        transform: translateY(10%);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .col-5,
+    .col-7 {
+        width: 100%;
+        height: 50%;
+    }
+    .container {
+        flex-direction: column-reverse;
+    }
+    .info {
+        align-items: flex-start;
+    }
+    .info h1 {
+        font-size: 60px;
+        line-height: 60px;
+        text-align: left;
+    }
+    .info p {
+        font-size: 12px;
+    }
+    .info button {
+        font-size: 20px;
+        padding: 10px 20px;
+    }
+    .product-info {
+        padding: 0 20px;
+    }
+    .col-7 {
+        align-items: flex-start;
+    }
+    .slider-main {
+        width: 80%;
+        height: 80%;
+        transform: translateY(20%);
+        padding: 50px;
+    }
+}
